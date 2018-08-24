@@ -1,0 +1,6 @@
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\bin\Debug\TaskList.Domain.dll
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\bin\Debug\TaskList.Domain.pdb
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\obj\Debug\TaskList.Domain.csprojResolveAssemblyReference.cache
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\obj\Debug\TaskList.Domain.csproj.CoreCompileInputs.cache
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\obj\Debug\TaskList.Domain.dll
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Domain\obj\Debug\TaskList.Domain.pdb

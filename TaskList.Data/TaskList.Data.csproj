@@ -47,11 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Maps\TaskMap.cs" />
+    <Compile Include="Maps\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskListContext.cs" />
+    <Compile Include="TaskListInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TaskList.Domain\TaskList.Domain.csproj">
+      <Project>{5cc6f387-91db-4500-86cf-d93dbae93edc}</Project>
+      <Name>TaskList.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
