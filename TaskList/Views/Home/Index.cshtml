@@ -14,30 +14,31 @@
         <h4>If you have an account, please login here:</h4>
         <p>
             @using (Html.BeginForm())
-            {
-                Html.EnableClientValidation(true);
-                Html.EnableUnobtrusiveJavaScript(true);
-                @Html.AntiForgeryToken()
+    {
+        Html.EnableClientValidation(true);
+        Html.EnableUnobtrusiveJavaScript(true);
+        @Html.AntiForgeryToken()
 
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Email:</label>
-                    </div>
-                    <div class="col-md-10">
-                        @Html.EditorFor(email => Model.Email)
-                        @Html.ValidationMessageFor(email => Model.Email, "", new { @class="text-danger"})
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <label>Password:</label>
-                    </div>
-                    <div class="col-md-10">
-                        @Html.EditorFor(password => Model.Password)
-                        @Html.ValidationMessageFor(password => Model.Password, "", new { @class="text-danger"})
-                    </div>
-                </div>
-            }
+        <div class="row">
+            <div class="col-md-2">
+                <label>Email:</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(email => Model.Email)
+                @Html.ValidationMessageFor(email => Model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Password:</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(password => Model.Password)
+                @Html.ValidationMessageFor(password => Model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <input type="submit" class = "btn btn-primary" value="Login" />
+}
         </p>
     </div>
 </div>
