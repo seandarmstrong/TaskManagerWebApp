@@ -16,10 +16,11 @@ namespace TaskList.Controllers
         private TaskListContext db = new TaskListContext();
 
         // GET: Tasks
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             var tasks = db.Tasks.Include(t => t.User);
-            return View(tasks.ToList());
+            var userTasks = db.Tasks.Where(task => task.UserId == id);
+            return View(userTasks);
         }
 
         // GET: Tasks/Details/5

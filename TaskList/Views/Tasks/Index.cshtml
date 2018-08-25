@@ -1,7 +1,7 @@
-﻿@model IEnumerable<TaskList.Domain.Models.Task>
+﻿@model System.Linq.IQueryable<TaskList.Domain.Models.Task>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tasks";
 }
 
 <h2>Index</h2>
@@ -12,28 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Due Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DueDate)
+            Time Left
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeLeft)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Complete)
+            Complete
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
