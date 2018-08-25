@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using TaskList.Models;
 
 namespace TaskList.Controllers
 {
@@ -11,6 +8,13 @@ namespace TaskList.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginModel login)
+        {
+            return RedirectToAction("Index", "Users", login);
         }
 
         public ActionResult About()
