@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -8,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TaskList.Data;
 using TaskList.Domain.Models;
+using TaskList.Helpers;
 
 namespace TaskList.Controllers
 {
@@ -16,8 +15,14 @@ namespace TaskList.Controllers
         private TaskListContext db = new TaskListContext();
 
         // GET: Tasks
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
+
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            int id = int.Parse(userId.Value);
+            HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
+            ViewBag.FirstName = firstName.Value;
+
             var tasks = db.Tasks.Include(t => t.User);
             var userTasks = db.Tasks.Where(task => task.UserId == id);
             return View(userTasks);
