@@ -46,7 +46,11 @@ namespace TaskList.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
+            ViewBag.FirstName = firstName.Value;
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            ViewBag.UserId = int.Parse(userId.Value);
             return View();
         }
 
@@ -64,7 +68,7 @@ namespace TaskList.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
             return View(task);
         }
 

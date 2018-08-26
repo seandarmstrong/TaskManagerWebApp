@@ -8,7 +8,7 @@
 <p>Here are your tasks</p>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Task", "Create", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
 </p>
 <table class="table">
     <tr>
@@ -19,7 +19,7 @@
             Due Date
         </th>
         <th>
-            Time Left
+            Days Left
         </th>
         <th>
             Complete
