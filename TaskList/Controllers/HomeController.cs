@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using TaskList.Data;
+using TaskList.Helpers;
 using TaskList.Models;
 
 namespace TaskList.Controllers
@@ -15,20 +18,51 @@ namespace TaskList.Controllers
             return View();
         }
 
+        int ID = 0;
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel login)
         {
             var user = db.Users
                     .Where(p => p.Email == login.Email)
-                    .Select(p => new { p.Id, p.Password, p.Email });
+                    .Select(p => new { p.Id, p.Password, p.Email, p.FirstName });
 
             foreach (var column in user)
             {
                 if (login.Password == column.Password && login.Email == column.Email)
                 {
-                    int id = column.Id;
-                    return RedirectToAction("Index", "Tasks", new { id });
+                    HttpCookie userIdCookie;
+                    if (Request.Cookies[Constant.UserIdCookie] == null)
+                    {
+                        userIdCookie = new HttpCookie(Constant.UserIdCookie);
+                        userIdCookie.Value = "0";
+                        userIdCookie.Expires = DateTime.UtcNow.AddYears(1);
+                    }
+                    else
+                    {
+                        userIdCookie = Request.Cookies[Constant.UserIdCookie];
+                    }
+
+                    ID = column.Id;
+                    userIdCookie.Value = ID.ToString();
+                    Response.Cookies.Add(userIdCookie);
+
+                    HttpCookie firstNameCookie;
+                    if (Request.Cookies[Constant.FirstNameCookie] == null)
+                    {
+                        firstNameCookie = new HttpCookie(Constant.FirstNameCookie);
+                        firstNameCookie.Value = "";
+                        firstNameCookie.Expires = DateTime.UtcNow.AddYears(1);
+                    }
+                    else
+                    {
+                        firstNameCookie = Request.Cookies[Constant.FirstNameCookie];
+                    }
+
+                    firstNameCookie.Value = column.FirstName;
+                    Response.Cookies.Add(firstNameCookie);
+
+                    return RedirectToAction("Index", "Tasks");
                 }
             }
             string alert = "The username or password is incorrect. Please try again!";
