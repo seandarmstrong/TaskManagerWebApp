@@ -102,7 +102,41 @@ namespace TaskList.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            ViewBag.UserId = int.Parse(userId.Value);
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", task.UserId);
+            return View(task);
+        }
+
+        public ActionResult Complete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return HttpNotFound();
+            }
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            ViewBag.UserId = int.Parse(userId.Value);
+            return View(task);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Complete([Bind(Include = "Id,UserId,Description,DueDate,TimeLeft,Complete")]
+            Task task)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(task).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            ViewBag.UserId = int.Parse(userId.Value);
             return View(task);
         }
 

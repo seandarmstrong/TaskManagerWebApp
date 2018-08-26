@@ -1,0 +1,80 @@
+﻿@model TaskList.Domain.Models.Task
+
+@{
+    ViewBag.Title = "Complete";
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<h2>Complete Task</h2>
+
+
+@using (Html.BeginForm())
+{
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
+    @Html.AntiForgeryToken()
+    int userId = ViewBag.UserId;
+    string id = userId.ToString();
+    <div class="form-horizontal">
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox(id, id, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-10">
+                @Html.TextBox(Model.Description, Model.Description, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Due Date</label>
+            <div class="col-md-10">
+                @Html.TextBox(Model.DueDate.ToString(), Model.DueDate, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Days Left</label>
+            <div class="col-md-10">
+                @Html.TextBox(Model.TimeLeft.ToString(), Model.TimeLeft, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Complete</label>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Complete)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="userId" name="userId" value=@userId>
+            <input type="hidden" id="Description" name="Description" value="@Model.Description">
+            <input type="hidden" id="DueDate" name="DueDate" value=@Model.DueDate>
+            <input type="hidden" id="TimeLeft" name="TimeLeft" value=@Model.TimeLeft>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
