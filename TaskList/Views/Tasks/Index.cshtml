@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Tasks";
+    int view;
 }
 
 <h3>Welcome @ViewBag.FirstName</h3>
@@ -15,7 +16,7 @@
 {
 
     <div>
-        Search Products:<br>
+        Search Tasks:<br>
         <input type="text" id="searchBox" name="seachQuery">
 
         <input type="submit" id="submitId" value="Submit" />
@@ -23,6 +24,17 @@
     </div>
 
 }
+    <p>
+        <span>
+            @Html.ActionLink("Sort Due Date", "Index", new { view = 1 }, new { @class = "btn btn-primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Sort Completed", "Index", new { view = 2 }, new { @class = "btn btn-primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Unsorted", "Index", new { view = 0 }, new { @class = "btn btn-primary" })
+        </span>
+    </p>
 <table class="table">
     <tr>
         <th>

@@ -15,17 +15,28 @@ namespace TaskList.Controllers
         private TaskListContext db = new TaskListContext();
 
         // GET: Tasks
-        public ActionResult Index()
+        public ActionResult Index(int view)
         {
-
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             int id = int.Parse(userId.Value);
             HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
             ViewBag.FirstName = firstName.Value;
 
             var tasks = db.Tasks.Include(t => t.User);
+            if (view == 1)
+            {
+                var userTasksDate = db.Tasks.Where(task => task.UserId == id).OrderBy(d => d.DueDate);
+                return View(userTasksDate);
+            }
+
+            if (view == 2)
+            {
+                var userTasksComplete = db.Tasks.Where(task => task.UserId == id).OrderBy(d => d.Complete);
+                return View(userTasksComplete);
+            }
             var userTasks = db.Tasks.Where(task => task.UserId == id);
             return View(userTasks);
+
         }
 
         // GET: Tasks/Details/5
@@ -59,11 +70,12 @@ namespace TaskList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,Description,DueDate,TimeLeft,Complete")] Task task)
         {
+            int view = 0;
             if (ModelState.IsValid)
             {
                 db.Tasks.Add(task);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { view });
             }
 
             //left in here to show as example of structure in future
@@ -98,9 +110,10 @@ namespace TaskList.Controllers
         {
             if (ModelState.IsValid)
             {
+                int view = 0;
                 db.Entry(task).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { view });
             }
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             ViewBag.UserId = int.Parse(userId.Value);
@@ -131,9 +144,10 @@ namespace TaskList.Controllers
         {
             if (ModelState.IsValid)
             {
+                int view = 0;
                 db.Entry(task).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { view });
             }
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             ViewBag.UserId = int.Parse(userId.Value);
@@ -160,10 +174,11 @@ namespace TaskList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            int view = 0;
             Task task = db.Tasks.Find(id);
             db.Tasks.Remove(task);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { view });
         }
 
         [HttpPost]
