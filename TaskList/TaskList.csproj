@@ -254,8 +254,6 @@
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\Complete.cshtml" />
     <Content Include="Views\Tasks\Search.cshtml" />
-    <Content Include="Views\Tasks\SortDueDate.cshtml" />
-    <Content Include="Views\Tasks\SortCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

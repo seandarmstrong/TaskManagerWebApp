@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Tasks";
+    int view;
 }
 
 <h3>Welcome @ViewBag.FirstName</h3>
@@ -25,10 +26,13 @@
 }
     <p>
         <span>
-            @Html.ActionLink("Sort Due Date", "SortDueDate", new { area = "" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sort Due Date", "Index", new { view = 1 }, new { @class = "btn btn-primary" })
         </span>
         <span>
-            @Html.ActionLink("Sort Completed", "SortCompleted", new { area = "" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sort Completed", "Index", new { view = 2 }, new { @class = "btn btn-primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Unsorted", "Index", new { view = 0 }, new { @class = "btn btn-primary" })
         </span>
     </p>
 <table class="table">
