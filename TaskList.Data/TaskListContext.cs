@@ -1,7 +1,6 @@
-﻿using TaskList.Domain.Models;
-using System.Data.Entity;
-using TaskList.Data;
+﻿using System.Data.Entity;
 using TaskList.Data.Maps;
+using TaskList.Domain.Models;
 
 namespace TaskList.Data
 {
@@ -9,7 +8,7 @@ namespace TaskList.Data
     {
         public TaskListContext() : base("TaskList")
         {
-            Database.SetInitializer(new TaskListInitializer());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TaskListContext, TaskList.Data.Migrations.Configuration>());
         }
 
         public DbSet<User> Users { get; set; }

@@ -49,6 +49,11 @@
   <ItemGroup>
     <Compile Include="Maps\TaskMap.cs" />
     <Compile Include="Maps\UserMap.cs" />
+    <Compile Include="Migrations\201808251931077_InitialCreate.cs" />
+    <Compile Include="Migrations\201808251931077_InitialCreate.Designer.cs">
+      <DependentUpon>201808251931077_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskListContext.cs" />
     <Compile Include="TaskListInitializer.cs" />
@@ -57,7 +62,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808251931077_InitialCreate.resx">
+      <DependentUpon>201808251931077_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskList.Domain\TaskList.Domain.csproj">
       <Project>{5cc6f387-91db-4500-86cf-d93dbae93edc}</Project>
