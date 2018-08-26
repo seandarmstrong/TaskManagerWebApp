@@ -1,7 +1,77 @@
-﻿
+﻿@model System.Linq.IQueryable<TaskList.Domain.Models.Task>
+
 @{
-    ViewBag.Title = "SortCompleted";
+    ViewBag.Title = "Tasks";
 }
 
-<h2>SortCompleted</h2>
+<h3>Welcome @ViewBag.FirstName</h3>
+<p>Here are your tasks</p>
 
+<p>
+    @Html.ActionLink("Create New Task", "Create", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+</p>
+
+@using (Html.BeginForm("Search", "Tasks", FormMethod.Post))
+{
+
+    <div>
+        Search Tasks:<br>
+        <input type="text" id="searchBox" name="seachQuery">
+
+        <input type="submit" id="submitId" value="Submit" />
+
+    </div>
+
+}
+<p>
+    <span>
+        @Html.ActionLink("Sort Due Date", "SortDueDate", new { area = "" }, new { @class = "btn btn-primary" })
+    </span>
+    <span>
+        @Html.ActionLink("Original List", "Index", new { area = "" }, new { @class = "btn btn-primary" })
+    </span>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Days Left
+        </th>
+        <th>
+            Completed
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeLeft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complete)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Complete", "Complete", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
