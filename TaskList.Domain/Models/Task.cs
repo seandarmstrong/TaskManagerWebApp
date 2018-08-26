@@ -13,7 +13,7 @@ namespace TaskList.Domain.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "You must enter a due date for the task")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
         public int TimeLeft { get; set; }

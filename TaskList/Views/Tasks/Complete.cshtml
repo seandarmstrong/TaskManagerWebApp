@@ -1,14 +1,14 @@
 ﻿@model TaskList.Domain.Models.Task
 
 @{
-    ViewBag.Title = "Edit Task";
+    ViewBag.Title = "Complete";
 }
 @section Scripts
 {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
 }
-<h2>Edit Task</h2>
+<h2>Complete Task</h2>
 
 
 @using (Html.BeginForm())
@@ -32,7 +32,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Description</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox(Model.Description, Model.Description, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Due Date</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox(Model.DueDate.ToString(), Model.DueDate, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Days Left</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeLeft, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox(Model.TimeLeft.ToString(), Model.TimeLeft, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
             </div>
         </div>
 
@@ -68,6 +68,9 @@
         </div>
         <div class="form-group">
             <input type="hidden" id="userId" name="userId" value=@userId>
+            <input type="hidden" id="Description" name="Description" value="@Model.Description">
+            <input type="hidden" id="DueDate" name="DueDate" value=@Model.DueDate>
+            <input type="hidden" id="TimeLeft" name="TimeLeft" value=@Model.TimeLeft>
         </div>
     </div>
 }
@@ -75,4 +78,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
