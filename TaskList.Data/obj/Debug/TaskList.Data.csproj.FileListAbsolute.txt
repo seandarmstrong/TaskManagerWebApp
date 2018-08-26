@@ -12,3 +12,5 @@ C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\
 C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\Debug\TaskList.Data.csproj.CopyComplete
 C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\Debug\TaskList.Data.dll
 C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\Debug\TaskList.Data.pdb
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\Debug\TaskList.Data.Migrations.InitialCreate.resources
+C:\Users\armst\Documents\Grand_Circus\Week6_Capstone\TaskList\TaskList.Data\obj\Debug\TaskList.Data.csproj.GenerateResource.cache

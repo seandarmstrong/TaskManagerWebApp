@@ -1,30 +1,35 @@
 ﻿@model TaskList.Domain.Models.Task
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Task";
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
-<h2>Create</h2>
+<h2>Create New Task</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
     @Html.AntiForgeryToken()
-    
+    int userId = ViewBag.UserId;
+    string id = userId.ToString();
     <div class="form-horizontal">
-        <h4>Task</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                @Html.TextBox(id, id, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Description</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -32,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DueDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Due Date</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
@@ -40,35 +45,33 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TimeLeft, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Days Left</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TimeLeft, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TimeLeft, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Complete, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Complete</label>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Complete)
-                    @Html.ValidationMessageFor(model => model.Complete, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create Task" class="btn btn-default" />
             </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="userId" name="userId" value=@userId>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Task List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
