@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using TaskList.Data;
-using System.Data.Entity;
-using TaskList.Domain.Models;
+﻿using System.Data.Entity;
 
 namespace TaskList.Data
 {
-    class TaskListInitializer : DropCreateDatabaseAlways<TaskListContext>
+    class TaskListInitializer : CreateDatabaseIfNotExists<TaskListContext>
     {
         protected override void Seed(TaskListContext context)
         {
