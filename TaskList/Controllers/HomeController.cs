@@ -25,7 +25,7 @@ namespace TaskList.Controllers
 
             foreach (var column in user)
             {
-                if (login.Password == column.Password || login.Email == column.Email)
+                if (login.Password == column.Password && login.Email == column.Email)
                 {
                     int id = column.Id;
                     return RedirectToAction("Index", "Tasks", new { id });
