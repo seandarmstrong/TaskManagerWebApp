@@ -166,6 +166,13 @@ namespace TaskList.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Search(string seachQuery)
+        {
+            var searchTerm = db.Tasks.Where(per => per.Description.Contains(seachQuery));
+            return View(searchTerm);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

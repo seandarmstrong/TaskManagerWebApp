@@ -1,28 +1,16 @@
 ﻿@model System.Linq.IQueryable<TaskList.Domain.Models.Task>
 
 @{
-    ViewBag.Title = "Tasks";
+    ViewBag.Title = "Search";
 }
 
 <h3>Welcome @ViewBag.FirstName</h3>
-<p>Here are your tasks</p>
+<p>Here are your tasks you have requested</p>
 
 <p>
     @Html.ActionLink("Create New Task", "Create", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
 </p>
 
-@using (Html.BeginForm("Search", "Tasks", FormMethod.Post))
-{
-
-    <div>
-        Search Products:<br>
-        <input type="text" id="searchBox" name="seachQuery">
-
-        <input type="submit" id="submitId" value="Submit" />
-
-    </div>
-
-}
 <table class="table">
     <tr>
         <th>
@@ -67,3 +55,7 @@
     }
 
 </table>
+
+<div>
+    @Html.ActionLink("Show All Tasks", "Index")
+</div>
