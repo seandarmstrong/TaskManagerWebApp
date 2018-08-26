@@ -17,7 +17,6 @@ namespace TaskList.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             int id = int.Parse(userId.Value);
             HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
@@ -25,6 +24,30 @@ namespace TaskList.Controllers
 
             var tasks = db.Tasks.Include(t => t.User);
             var userTasks = db.Tasks.Where(task => task.UserId == id);
+            return View(userTasks);
+        }
+
+        public ActionResult SortDueDate()
+        {
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            int id = int.Parse(userId.Value);
+            HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
+            ViewBag.FirstName = firstName.Value;
+
+            var tasks = db.Tasks.Include(t => t.User);
+            var userTasks = db.Tasks.Where(task => task.UserId == id).OrderBy(d => d.DueDate);
+            return View(userTasks);
+        }
+
+        public ActionResult SortCompleted()
+        {
+            HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
+            int id = int.Parse(userId.Value);
+            HttpCookie firstName = HttpContext.Request.Cookies[Constant.FirstNameCookie];
+            ViewBag.FirstName = firstName.Value;
+
+            var tasks = db.Tasks.Include(t => t.User);
+            var userTasks = db.Tasks.Where(task => task.UserId == id).OrderBy(d => d.Complete);
             return View(userTasks);
         }
 

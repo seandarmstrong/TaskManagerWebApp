@@ -15,7 +15,7 @@
 {
 
     <div>
-        Search Products:<br>
+        Search Tasks:<br>
         <input type="text" id="searchBox" name="seachQuery">
 
         <input type="submit" id="submitId" value="Submit" />
@@ -23,6 +23,14 @@
     </div>
 
 }
+    <p>
+        <span>
+            @Html.ActionLink("Sort Due Date", "SortDueDate", new { area = "" }, new { @class = "btn btn-primary" })
+        </span>
+        <span>
+            @Html.ActionLink("Sort Completed", "SortCompleted", new { area = "" }, new { @class = "btn btn-primary" })
+        </span>
+    </p>
 <table class="table">
     <tr>
         <th>
