@@ -25,7 +25,7 @@ namespace TaskList.Controllers
         {
             var user = db.Users
                     .Where(p => p.Email == login.Email)
-                    .Select(p => new { p.Id, p.Password, p.Email, p.FirstName });
+                    .Select(p => new { p.Id, p.Password, p.Email, p.FirstName, p.Username });
 
             foreach (var column in user)
             {
@@ -61,6 +61,21 @@ namespace TaskList.Controllers
 
                     firstNameCookie.Value = column.FirstName;
                     Response.Cookies.Add(firstNameCookie);
+
+                    HttpCookie usernameCookie;
+                    if (Request.Cookies[Constant.UsernameCookie] == null)
+                    {
+                        usernameCookie = new HttpCookie(Constant.UsernameCookie);
+                        usernameCookie.Value = "";
+                        usernameCookie.Expires = DateTime.UtcNow.AddYears(1);
+                    }
+                    else
+                    {
+                        usernameCookie = Request.Cookies[Constant.UsernameCookie];
+                    }
+
+                    usernameCookie.Value = column.Username;
+                    Response.Cookies.Add(usernameCookie);
 
                     int view = 0;
                     return RedirectToAction("Index", "Tasks", new { view });
