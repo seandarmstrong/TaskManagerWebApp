@@ -9,7 +9,7 @@
 <p>Here are your tasks</p>
 
 <p>
-    @Html.ActionLink("Create New Task", "Create", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Create New Task", "Create", new { area = "" }, new { @class = "btn btn-primary" })
 </p>
 
 @using (Html.BeginForm("Search", "Tasks", FormMethod.Post))
@@ -24,18 +24,19 @@
     </div>
 
 }
-    <p>
-        <span>
-            @Html.ActionLink("Sort Due Date", "Index", new { view = 1 }, new { @class = "btn btn-primary" })
-        </span>
-        <span>
-            @Html.ActionLink("Sort Completed", "Index", new { view = 2 }, new { @class = "btn btn-primary" })
-        </span>
-        <span>
-            @Html.ActionLink("Unsorted", "Index", new { view = 0 }, new { @class = "btn btn-primary" })
-        </span>
-    </p>
-<table class="table">
+<br />
+<p>
+    <span id="sortdatebutton">
+        @Html.ActionLink("Sort Due Date", "Index", new { view = 1 }, new { @class = "btn btn-secondary btn-sm" })
+    </span>
+    <span id="sortcompletebutton">
+        @Html.ActionLink("Sort Completed", "Index", new { view = 2 }, new { @class = "btn btn-secondary btn-sm" })
+    </span>
+    <span>
+        @Html.ActionLink("Unsorted", "Index", new { view = 0 }, new { @class = "btn btn-secondary btn-sm" })
+    </span>
+</p>
+<table class="table table-hover">
     <tr>
         <th>
             Description
@@ -73,7 +74,7 @@
             else
             {
                 <td>
-            @((item.DueDate - DateTime.Now).Days)
+                    @((item.DueDate - DateTime.Now).Days)
                 </td>
             }
             <td>

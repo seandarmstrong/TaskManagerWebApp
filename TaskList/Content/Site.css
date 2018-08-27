@@ -22,3 +22,12 @@ select,
 textarea {
     max-width: 280px;
 }
+#loginbutton {
+    margin-top: 4px;
+}
+#sortdatebutton {
+    margin-right: 15px;
+}
+#sortcompletebutton {
+    margin-right: 15px;
+}
