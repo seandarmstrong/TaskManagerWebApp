@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-10">
                         @Html.EditorFor(password => Model.Password)
-                        @Html.ValidationMessageFor(password => Model.Password, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(password => Model.Password, "", new { htmlAttributes = new { type = "password", @class = "text-danger" }})
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Login" id="loginbutton"/>
