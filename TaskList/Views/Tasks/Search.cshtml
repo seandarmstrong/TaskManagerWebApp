@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Search";
-    int view = 0;
 }
 
 <h3>Welcome @ViewBag.FirstName</h3>
@@ -54,5 +53,5 @@
 </table>
 
 <div>
-    @Html.ActionLink("Show All Tasks", "Index", new { view })
+    @Html.ActionLink("Show All Tasks", "Index")
 </div>

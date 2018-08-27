@@ -15,7 +15,7 @@ namespace TaskList.Controllers
         private TaskListContext db = new TaskListContext();
 
         // GET: Tasks
-        public ActionResult Index(int view)
+        public ActionResult Index(int view = 0)
         {
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             int id = int.Parse(userId.Value);
@@ -70,12 +70,11 @@ namespace TaskList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,Description,DueDate,TimeLeft,Complete")] Task task)
         {
-            int view = 0;
             if (ModelState.IsValid)
             {
                 db.Tasks.Add(task);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { view });
+                return RedirectToAction("Index");
             }
 
             //left in here to show as example of structure in future
@@ -110,10 +109,9 @@ namespace TaskList.Controllers
         {
             if (ModelState.IsValid)
             {
-                int view = 0;
                 db.Entry(task).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { view });
+                return RedirectToAction("Index");
             }
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             ViewBag.UserId = int.Parse(userId.Value);
@@ -144,10 +142,9 @@ namespace TaskList.Controllers
         {
             if (ModelState.IsValid)
             {
-                int view = 0;
                 db.Entry(task).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { view });
+                return RedirectToAction("Index");
             }
             HttpCookie userId = HttpContext.Request.Cookies[Constant.UserIdCookie];
             ViewBag.UserId = int.Parse(userId.Value);
@@ -174,11 +171,10 @@ namespace TaskList.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            int view = 0;
             Task task = db.Tasks.Find(id);
             db.Tasks.Remove(task);
             db.SaveChanges();
-            return RedirectToAction("Index", new { view });
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

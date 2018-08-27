@@ -77,8 +77,8 @@ namespace TaskList.Controllers
                     usernameCookie.Value = column.Username;
                     Response.Cookies.Add(usernameCookie);
 
-                    int view = 0;
-                    return RedirectToAction("Index", "Tasks", new { view });
+                    
+                    return RedirectToAction("Index", "Tasks");
                 }
             }
             string alert = "The username or password is incorrect. Please try again!";
