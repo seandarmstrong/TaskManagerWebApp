@@ -64,9 +64,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeLeft)
-            </td>
+            @if ((item.DueDate - DateTime.Now).Days >= 0)
+            {
+                <td>
+                    @((item.DueDate - DateTime.Now).Days + 1)
+                </td>
+            }
+            else
+            {
+                <td>
+            @((item.DueDate - DateTime.Now).Days)
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Complete)
             </td>

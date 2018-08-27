@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Search";
+    int view = 0;
 }
 
 <h3>Welcome @ViewBag.FirstName</h3>
@@ -37,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeLeft)
+                @Html.Display(((DateTime.Now - item.DueDate).Days).ToString())
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Complete)
@@ -53,5 +54,5 @@
 </table>
 
 <div>
-    @Html.ActionLink("Show All Tasks", "Index")
+    @Html.ActionLink("Show All Tasks", "Index", new { view })
 </div>
